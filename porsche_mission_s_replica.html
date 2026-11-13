@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f2f2f0">
+<title>Mission S — A Sports Car</title>
+<style>
+:root{--bg:#f2f2f0;--ink:#111;--muted:#777;--line:#d7d7d4;--red:#c90020}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}
+.topbar{height:76px;padding:0 5.2vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,.12);position:absolute;z-index:10;top:0;left:0;width:100%;color:#111}
+.brand{font-size:18px;font-weight:800;letter-spacing:.24em}.nav{display:flex;gap:34px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}.nav a{opacity:.75;transition:.2s}.nav a:hover{opacity:1}.menu{display:none;border:0;background:none;font-size:24px}
+.hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#aaa url('https://a.storyblok.com/f/322327/7680x3840/e9b34cf231/mission-s-stage.jpg/m/2560x1440/smart/filters:format(webp)') center/cover no-repeat}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.36),transparent 56%)}
+.hero-copy{position:relative;z-index:1;color:white;padding:0 7vw 8vh;width:100%}.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:20px}.hero h1{font-size:clamp(58px,11vw,168px);line-height:.82;letter-spacing:-.075em;margin:0;font-weight:800}.hero-bottom{display:flex;justify-content:space-between;align-items:end;margin-top:30px}.hero-bottom p{max-width:440px;font-size:14px;line-height:1.65;margin:0}.scroll{font-size:10px;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px}.scroll:after{content:"";width:52px;height:1px;background:white}
+.intro{padding:150px 8vw 110px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:start}.intro h2,.section-title{font-size:clamp(38px,6vw,86px);line-height:.94;letter-spacing:-.065em;margin:0;font-weight:700}.intro p{font-size:17px;line-height:1.8;max-width:520px;margin:10px 0 0;color:#444}
+.statement{padding:0 8vw 120px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.statement article{border-top:1px solid var(--line);padding-top:24px}.statement h3{font-size:27px;margin:0 0 15px;letter-spacing:-.04em}.statement p{font-size:14px;line-height:1.7;color:#666;margin:0;max-width:330px}
+.image-wide{width:100%;display:block;object-fit:cover}.wide-frame{height:min(70vw,760px);overflow:hidden;background:#ddd}.wide-frame img{width:100%;height:100%;object-fit:cover}
+.split{padding:130px 8vw;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}.split .copy{max-width:500px}.kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#777;margin-bottom:24px}.split h2{font-size:clamp(42px,6vw,82px);line-height:.93;letter-spacing:-.07em;margin:0 0 25px}.split p{font-size:15px;line-height:1.8;color:#555}.split img{width:100%;display:block;object-fit:cover;max-height:650px}
+.gallery{padding:40px 8vw 130px}.gallery-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:38px}.gallery-head h2{font-size:clamp(42px,6vw,80px);letter-spacing:-.07em;line-height:.9;margin:0}.gallery-head span{font-size:10px;letter-spacing:.2em;color:#777}.gallery-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.gallery-grid img{width:100%;height:100%;max-height:520px;object-fit:cover;display:block}.gallery-grid .small-stack{display:grid;grid-template-rows:1fr 1fr;gap:20px}.gallery-grid .small-stack img{min-height:240px}
+.dark{background:#111;color:#f5f5f3}.dark .kicker{color:#999}.dark p{color:#aaa}.dark .statement article{border-color:#444}
+.interior{padding:130px 8vw 120px}.interior-top{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end;margin-bottom:60px}.interior-top h2{font-size:clamp(48px,7vw,100px);line-height:.88;letter-spacing:-.075em;margin:0}.interior-top p{font-size:15px;line-height:1.8;color:#aaa;max-width:460px}.interior-hero{width:100%;height:min(65vw,700px);object-fit:cover;display:block}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}.detail-grid img{width:100%;height:260px;object-fit:cover}.detail-grid h3{font-size:18px;margin:18px 0 8px}.detail-grid p{font-size:13px;line-height:1.7;color:#999;margin:0}
+.footer{padding:75px 8vw 40px;background:#e4e4e1}.footer-top{display:flex;justify-content:space-between;align-items:start;border-bottom:1px solid #c7c7c3;padding-bottom:65px}.footer h2{font-size:clamp(42px,8vw,112px);letter-spacing:-.08em;line-height:.85;margin:0}.footer a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid #111;padding-bottom:10px}.footer-bottom{display:flex;justify-content:space-between;padding-top:24px;color:#777;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:none}
+.play{border:1px solid rgba(255,255,255,.8);background:rgba(0,0,0,.15);color:#fff;border-radius:50%;width:64px;height:64px;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(8px);transition:.25s}.play:hover{background:white;color:#111;transform:scale(1.06)}.play svg{margin-left:3px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:30;display:none;place-items:center;padding:24px}.modal.open{display:grid}.modal-box{max-width:900px;width:100%;color:white;text-align:center}.modal-box img{width:100%;display:block}.close{position:absolute;right:28px;top:22px;background:none;border:0;color:white;font-size:32px;cursor:pointer}
+@media(max-width:760px){.topbar{height:64px;padding:0 6vw}.nav{display:none}.menu{display:block;color:inherit}.hero{min-height:88svh;background-position:54% center}.hero-copy{padding:0 6vw 8vh}.hero h1{font-size:19vw}.hero-bottom{display:block}.hero-bottom p{font-size:13px;margin-bottom:28px;max-width:340px}.intro{padding:90px 7vw 75px;grid-template-columns:1fr;gap:26px}.intro p{font-size:15px}.statement{padding:0 7vw 80px;grid-template-columns:1fr;gap:28px}.statement h3{font-size:24px}.wide-frame{height:72vw}.split{padding:85px 7vw;grid-template-columns:1fr;gap:35px}.split.reverse .copy{order:0}.split.reverse img{order:1}.split h2{font-size:54px}.gallery{padding:20px 7vw 85px}.gallery-head{display:block}.gallery-head span{display:block;margin-top:18px}.gallery-grid{grid-template-columns:1fr;gap:14px}.gallery-grid .small-stack{grid-template-columns:1fr 1fr;grid-template-rows:1fr;gap:14px}.gallery-grid .small-stack img{height:34vw;min-height:0}.interior{padding:85px 7vw}.interior-top{grid-template-columns:1fr;gap:20px;margin-bottom:30px}.interior-top h2{font-size:58px}.interior-hero{height:75vw}.detail-grid{grid-template-columns:1fr;gap:28px}.detail-grid img{height:65vw}.footer{padding:65px 7vw 30px}.footer-top{display:block;padding-bottom:40px}.footer-top a{display:inline-block;margin-top:35px}.footer-bottom{gap:20px;flex-direction:column}.scroll{margin-top:20px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="Porsche">PORSCHE</a>
+  <nav class="nav"><a href="#concept">Concept</a><a href="#exterior">Exterior</a><a href="#interior">Interior</a></nav>
+  <button class="menu" aria-label="Menu" onclick="document.querySelector('.nav').classList.toggle('mobile-open')">☰</button>
+</header>
+<main id="top">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">A glimpse into the future</div>
+    <h1>A SPORTS<br>CAR.</h1>
+    <div class="hero-bottom">
+      <p>Shaped by our heritage. Driven by what comes next. Meet the Porsche Mission S — a study in timeless proportions and pure driver focus.</p>
+      <div class="scroll">Scroll to explore</div>
+    </div>
+  </div>
+</section>
+<section class="intro reveal" id="concept">
+  <h2>THE FUTURE.<br>ROOTED IN<br>HERITAGE.</h2>
+  <p>A glimpse into the future of sports cars — shaped by our heritage. With its timeless, purist design, mid-engine architecture, and focus on the driver and the driving experience, the Mission S bridges the gap between the future and our heritage.</p>
+</section>
+<section class="statement reveal">
+  <article><h3>Authentic.</h3><p>Stripped down to the essentials: the Mission S showcases what makes a true sports car and delivers an immediate driving experience.</p></article>
+  <article><h3>Consequent.</h3><p>Every detail is based on an idea. Every element serves a clear purpose. Nothing distracts the driver; everything enhances the experience.</p></article>
+  <article><h3>Timeless.</h3><p>Inspired by icons: the design language blends the past and the future into a distinctive design imbued with Porsche DNA.</p></article>
+</section>
+<div class="wide-frame reveal"><img class="image-wide" src="https://a.storyblok.com/f/322327/7680x3296/b401f0972d/mission-s-exterior.jpg/m/2560x1097/smart/filters:format(webp)" alt="Porsche Mission S exterior"></div>
+<section class="split reveal" id="exterior">
+  <div class="copy"><div class="kicker">01 / Design philosophy</div><h2>FORM<br>FOLLOWS<br>FUNCTION.</h2><p>The wraparound main line connects the lighting signatures at the front and rear. Characteristic torpedo fenders and the dynamic roofline draw on historic Porsche design features and reinterpret them.</p></div>
+  <img src="https://a.storyblok.com/f/322327/7680x4320/d01b79811b/mission-s-exterior.jpg/m/2560x1440/smart/filters:format(webp)" alt="Mission S rear design">
+</section>
+<section class="gallery reveal">
+  <div class="gallery-head"><h2>EXTERIOR<br>HIGHLIGHTS.</h2><span>DETAILS THAT DEFINE THE WHOLE</span></div>
+  <div class="gallery-grid">
+    <img src="https://a.storyblok.com/f/322327/7680x3296/767a0086eb/mission-s-rear.jpg/m/2560x1097/smart/filters:format(webp)" alt="Mission S rear view">
+    <div class="small-stack">
+      <img src="https://a.storyblok.com/f/322327/7680x3296/d5f8967033/mission-s-topview.jpg/m/2560x1097/smart/filters:format(webp)" alt="Mission S top view">
+      <img src="https://a.storyblok.com/f/322327/7680x4320/d01b79811b/mission-s-exterior.jpg/m/2560x1440/smart/filters:format(webp)" alt="Mission S rear detail">
+    </div>
+  </div>
+</section>
+<section class="split reverse dark reveal">
+  <img src="https://a.storyblok.com/f/322327/7680x4320/631f48b146/mission-s-interior.jpg/m/2560x1440/smart/filters:format(webp)" alt="Mission S cockpit">
+  <div class="copy"><div class="kicker">02 / Driver experience</div><h2>FOCUS ON<br>WHAT MATTERS.</h2><p>Every idea behind the Mission S stems from a single question: what does the sports car of tomorrow really need? The answer is a consequent focus on the driver's experience — from the five round instruments with an analog tachometer to the center dials with push-pull functionality.</p></div>
+</section>
+<section class="interior dark reveal" id="interior">
+  <div class="interior-top"><h2>AUTHENTIC.<br>CONSEQUENT.<br>TIMELESS.</h2><p>A deliberate return to the core values of sports car engineering. Clear information, intuitive controls, and a precise layout of all elements ensure that attention remains where it belongs: on the road.</p></div>
+  <img class="interior-hero" src="https://a.storyblok.com/f/322327/2968x4052/e68564b4af/mission-s-cockpit.jpg/m/1200x1600/smart/filters:format(webp)" alt="Mission S interior">
+  <div class="detail-grid">
+    <article><img src="https://a.storyblok.com/f/322327/7680x3296/767a0086eb/mission-s-rear.jpg/m/2560x1097/smart/filters:format(webp)" alt="Instrument cluster"><h3>Analog at heart.</h3><p>A central tachometer keeps the driver connected to the rhythm of the machine.</p></article>
+    <article><img src="https://a.storyblok.com/f/322327/3905x2659/ee0abd9aa7/mission-s-buttons.jpg/m/975x662/smart/filters:format(webp)" alt="Steering wheel control"><h3>“On your own” mode.</h3><p>A red button. A conscious decision. Driving pleasure in its purest form.</p></article>
+    <article><img src="https://a.storyblok.com/f/322327/7680x4320/631f48b146/mission-s-interior.jpg/m/2560x1440/smart/filters:format(webp)" alt="Cockpit detail"><h3>Driver-focused cockpit.</h3><p>Every control is placed with purpose. Every detail is designed around the drive.</p></article>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-top"><h2>THE DRIVE<br>IS YOURS.</h2><a href="#top">Back to top ↑</a></div>
+  <div class="footer-bottom"><span>PORSCHE · MISSION S</span><span>DESIGN STUDY / DIGITAL EXPERIENCE</span><span>© 2026</span></div>
+</footer>
+</main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Mission S visual"><button class="close" onclick="closeModal()" aria-label="Close">×</button><div class="modal-box"><img src="https://a.storyblok.com/f/322327/7680x3840/e9b34cf231/mission-s-stage.jpg/m/2560x1440/smart/filters:format(webp)" alt="Mission S"><p>PORSCHE MISSION S — A SPORTS CAR.</p></div></div>
+<script>
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.nav').classList.remove('mobile-open')));
+</script>
+</body>
+</html>
